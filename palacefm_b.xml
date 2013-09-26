@@ -1,0 +1,81 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.3.8" name="palacefm_b">
+ <output-sockets>
+  <socket exclusive="off" client="calf" type="jack-audio" name="calf_processor">
+   <plug>Compressor_out_l</plug>
+   <plug>Compressor_out_r</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="calf_limiter">
+   <plug>MultibandLimiter_out_l</plug>
+   <plug>MultibandLimiter_out_r</plug>
+   <plug>multibandlimiter_out_l</plug>
+   <plug>multibandlimiter_out_r</plug>
+  </socket>
+  <socket exclusive="on" client="system" type="jack-audio" name="system">
+   <plug>capture_1</plug>
+   <plug>capture_2</plug>
+  </socket>
+  <socket exclusive="off" client="alsa_in" type="jack-audio" name="USB_SND">
+   <plug>capture_1</plug>
+  </socket>
+  <socket exclusive="off" client="rivendell_1" type="jack-audio" name="rivendell_1">
+   <plug>playout_1L</plug>
+   <plug>playout_1R</plug>
+  </socket>
+  <socket exclusive="off" client="rivendell_1" type="jack-audio" name="Output Socket 5">
+   <plug>playout_0L</plug>
+   <plug>playout_0R</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket exclusive="off" client="calf" type="jack-audio" name="calf_processor">
+   <plug>Compressor_in_l</plug>
+   <plug>Compressor_in_r</plug>
+  </socket>
+  <socket exclusive="off" client="calf" type="jack-audio" name="calf_limiter">
+   <plug>MultibandLimiter_in_l</plug>
+   <plug>MultibandLimiter_in_r</plug>
+   <plug>multibandlimiter_in_l</plug>
+   <plug>multibandlimiter_in_r</plug>
+  </socket>
+  <socket exclusive="off" client="silentjack" type="jack-audio" name="silentjack">
+   <plug>in</plug>
+  </socket>
+  <socket exclusive="off" client="system" type="jack-audio" name="system">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+  </socket>
+  <socket exclusive="off" client="alsa_out" type="jack-audio" name="USB_SND">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+  </socket>
+  <socket exclusive="off" client="alsa-jack\.rawjackC\.[0-9]+\.0" type="jack-audio" name="alsa-jack-rawjack">
+   <plug>in_000</plug>
+   <plug>in_001</plug>
+  </socket>
+  <socket exclusive="off" client="rivendell_1" type="jack-audio" name="rivendell_1">
+   <plug>record_1L</plug>
+   <plug>record_1R</plug>
+  </socket>
+  <socket exclusive="off" client="rotter" type="jack-audio" name="rotter-logger">
+   <plug>left</plug>
+   <plug>right</plug>
+  </socket>
+  <socket exclusive="off" client="darkice-[0-9]+" type="jack-audio" name="darkice">
+   <plug>left</plug>
+   <plug>right</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="calf_processor" input="calf_limiter" type="jack-audio"/>
+  <cable output="system" input="calf_processor" type="jack-audio"/>
+  <cable output="rivendell_1" input="USB_SND" type="jack-audio"/>
+  <cable output="Output Socket 5" input="system" type="jack-audio"/>
+  <cable output="calf_limiter" input="alsa-jack-rawjack" type="jack-audio"/>
+  <cable output="calf_limiter" input="rotter-logger" type="jack-audio"/>
+  <cable output="calf_limiter" input="darkice" type="jack-audio"/>
+  <cable output="calf_limiter" input="silentjack" type="jack-audio"/>
+ </cables>
+</patchbay>
+
